@@ -28,7 +28,13 @@
 def max_intervals(intervals: list) -> int:
     count = 0
     last_end = float("-inf")
-    # TODO: отсортировать и пройтись по интервалам
+    
+    intervals.sort(key=lambda x: x[1])
+
+    for start, end in intervals:
+        if start >= last_end:
+            count += 1
+            last_end = end
     return count
 
 

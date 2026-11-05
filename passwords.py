@@ -21,7 +21,7 @@ def is_long_enough(password, min_length=8):
 
     См.: https://docs.python.org/3/library/functions.html#len
     """
-    if len(password) >= min_lenght:
+    if len(password) >= min_length:
         return True
     return False
 
@@ -34,7 +34,7 @@ def has_lowercase(password):
     for char in password:
         if char.islower():
             return True
-        return False
+    return False
 
 
 def has_no_spaces(password):
@@ -44,8 +44,8 @@ def has_no_spaces(password):
     """
     for char in password:
         if char.isspace():
-            return True
-        return False
+            return False
+    return True
 
 
 def is_alphanumeric(password):
@@ -56,7 +56,7 @@ def is_alphanumeric(password):
     for char in password:
         if not char.isalnum():
             return False
-        return True
+    return True
 
 
 def starts_not_with_digit(password):

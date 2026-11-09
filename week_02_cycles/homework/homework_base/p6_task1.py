@@ -41,7 +41,15 @@ def hw_1_4_first_error(login: str, age: int) -> str:
     if login == "":
         return "empty login"
     elif len(login) < 3:
-
+        return "short login"
+    elif len(login) > 20:
+        return "long login"
+    elif age < 18:
+        return "too young"
+    elif age > 120:
+        return "too old"
+    else:
+        return "ok"
 # ============================================================
 # Assert-тесты
 # ============================================================

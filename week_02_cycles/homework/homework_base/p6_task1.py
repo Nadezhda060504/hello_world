@@ -22,27 +22,25 @@
 
 def hw_1_1_login_ok(login: str) -> bool:
     """Вернуть True, если логин от 3 до 20 символов."""
-    # TODO: реализовать
-    pass
+    return len(login) >= 3 and len(login) <= 20
+
 
 
 def hw_1_2_age_ok(age: int) -> bool:
     """Вернуть True, если 18 <= age <= 120."""
-    # TODO: реализовать
-    pass
-
+    return age >= 18 and age <= 120
 
 def hw_1_3_both_ok(login: str, age: int) -> bool:
     """Вернуть True, если логин и возраст корректны."""
-    # TODO: реализовать
-    pass
+    return hw_1_1_login_ok(login) and hw_1_2_age_ok(age)
+
 
 
 def hw_1_4_first_error(login: str, age: int) -> str:
     """Вернуть текст первой ошибки или 'ok'."""
-    # TODO: реализовать
-    pass
-
+    if login == "":
+        return "empty login"
+    elif len(login) < 3:
 
 # ============================================================
 # Assert-тесты

@@ -20,32 +20,54 @@ import re
 
 def hw_5_1_keys(data: str) -> list[str]:
     """Вернуть список ключей."""
-    # TODO: реализовать
-    pass
+    parts = data.split(";")
+    keys = []
+
+    for part in parts:
+        key = part.split("=")[0]
+        keys.append(key)
+
+    return keys
 
 
 def hw_5_2_values(data: str) -> list[str]:
     """Вернуть список значений."""
-    # TODO: реализовать
-    pass
+    parts = data.split(";")
+    values = []
+
+    for part in parts:
+        value = part.split("=")[1]
+        values.append(value)
+
+    return values
 
 
 def hw_5_3_all_nonempty(data: str) -> bool:
     """Вернуть True, если все значения непустые."""
-    # TODO: реализовать
-    pass
+    for value in hw_5_2_values(data):
+        if value == "":
+            return False
+    return True
 
 
 def hw_5_4_has_digit(data: str) -> bool:
     """Вернуть True, если в строке есть хотя бы одна цифра."""
-    # TODO: реализовать
-    pass
-
+    for symbol in data:
+        if symbol.isdigit():
+            return True
+    return False
 
 def hw_5_5_keys_latin(data: str) -> bool:
     """Вернуть True, если все ключи — только латинские буквы."""
-    # TODO: реализовать
-    pass
+    for key in hw_5_1_keys(data):
+        for letter in key:
+            if not ("a" <= letter <= "z" or "A" <= letter <= "Z"):
+                return False
+
+        if key == "":
+            return False
+
+    return True
 
 
 # ============================================================

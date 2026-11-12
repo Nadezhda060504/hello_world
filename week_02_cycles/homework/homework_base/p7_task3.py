@@ -12,28 +12,42 @@
 
 
 def messages(logs):
-    # TODO
-    pass
+    result = []
+    for log in logs:
+        result.append(log.split(":")[1])
+    return result
 
 
 def levels(logs):
-    # TODO
-    pass
+    result = []
+    for log in logs:
+        result.append(log.split(":")[0])
+    return result
 
 
 def error_count(logs):
-    # TODO
-    pass
+    count = 0
+    for log in logs:
+        if log.split(":")[0] == "ERROR":
+            count += 1
+    return count
 
 
 def long_messages(logs):
-    # TODO
-    pass
+    result = []
+    for log in logs:
+        message = log.split(":")[1]
+        if len(message) > 5:
+            result.append(message)
+    return result
+
 
 
 def has_error(logs):
-    # TODO
-    pass
+    for log in logs:
+        if log.split(":")[0] == "ERROR":
+            return True
+    return False
 
 
 if __name__ == "__main__":

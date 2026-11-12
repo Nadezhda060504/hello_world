@@ -13,30 +13,36 @@
 
 
 def above_zero(temps):
-    # TODO
-    pass
+    result = []
+    for x in temps:
+        if x > 0:
+            result.append(x)
+    return result
 
 
 def total(temps):
-    # TODO
-    pass
+    result = 0
+    for x in temps:
+        result += x
+    return result
 
 
 def average(temps):
-    # TODO
-    pass
+    return total(temps) / len(temps) 
 
 
 def below_minus_ten(temps):
-    # TODO
-    pass
+    count = 0
+    for x in temps:
+        if x < -10:
+            count += 1
+    return count
 
 
 def rounded(temps):
-    # TODO
-    pass
-
-
+    result = [int(x) for x in temps]
+    return result
+     
 if __name__ == "__main__":
     temps = [3, -5, 0, 12, -15, 7, -20, 4]
     assert above_zero(temps) == [3, 12, 7, 4]

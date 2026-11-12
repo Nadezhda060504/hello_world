@@ -13,29 +13,39 @@
 
 
 def snapshots(n):
-    # TODO
-    pass
+    result = []
+    for i in range(n + 1):
+        result.append(i)
+    return result
+
 
 
 def multiples_of_three(n):
-    # TODO
-    pass
-
+    result = []
+    for i in range(n + 1):
+        if i % 3 == 0:
+            result.append(i)
+    return result
 
 def reversed_snapshots(n):
-    # TODO
-    pass
+    result = []
+    for i in range(n, -1, -1):
+        result.append(i)
+    return result
 
 
 def squares(n):
-    # TODO
-    pass
+    result = [i ** 2 for i in range(n + 1)]
+    return result
+
 
 
 def sum_multiples_of_five(n):
-    # TODO
-    pass
-
+    result = 0
+    for i in range(n + 1):
+        if i % 5 == 0:
+            result += i
+    return result
 
 if __name__ == "__main__":
     assert snapshots(4) == [0, 1, 2, 3, 4]

@@ -12,32 +12,50 @@
 
 
 def flat(grades):
-    # TODO
-    pass
+    result = []
+    for row in grades:
+        for grade in row:
+            result.append(grade)
+    return result
 
 
 def total(grades):
-    # TODO
-    pass
+    result = 0
+    for row in grades:
+        for grade in row:
+            result += grade
+    return result
 
 
 def maximum(grades):
-    # TODO
-    pass
+    result = grades[0][0]
+    for row in grades:
+        for grade in row:
+            if grade > result:
+                result = grade
+    return result
 
 
 def count_fives(grades):
-    # TODO
-    pass
+    count = 0
+    for row in grades:
+        for grade in row:
+            if grade == 5:
+                count += 1
+    return count
 
 
 def averages(grades):
-    # TODO
-    pass
+    result = []
+    for row in grades:
+        average = sum(row) / len(row)
+        result.append(average)
+    return result
 
 
 if __name__ == "__main__":
     grades = [[5, 4, 5], [3, 3, 4], [5, 5, 5]]
+
     assert flat(grades) == [5, 4, 5, 3, 3, 4, 5, 5, 5]
     assert total(grades) == 39
     assert maximum(grades) == 5

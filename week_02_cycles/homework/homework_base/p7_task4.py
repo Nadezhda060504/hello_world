@@ -1,6 +1,6 @@
+
 """
 Задача 4 (base). Корзина покупок.
-
 Корзина — список цен (числа).
 
 4.1. Добавьте к корзине новую цену price (метод append).
@@ -12,28 +12,29 @@
 
 
 def add_price(cart, price):
-    # TODO
-    pass
+    cart.append(price)
+    return cart
 
 
 def remove_first(cart):
-    # TODO
-    pass
+    cart.pop(0)
+    return cart
 
 
 def sorted_cart(cart):
-    # TODO
-    pass
+    cart.sort()
+    return cart
 
 
 def copy_cart(cart):
-    # TODO
-    pass
+    return cart.copy()
 
 
 def discounted(cart):
-    # TODO
-    pass
+    result = []
+    for x in cart:
+        result.append(x * 0.9)
+    return result
 
 
 if __name__ == "__main__":
@@ -42,4 +43,5 @@ if __name__ == "__main__":
     assert sorted_cart([300, 100, 200]) == [100, 200, 300]
     assert copy_cart([100, 200]) == [100, 200]
     assert discounted([100, 200]) == [90.0, 180.0]
+
     print("task4 (base): все тесты пройдены.")

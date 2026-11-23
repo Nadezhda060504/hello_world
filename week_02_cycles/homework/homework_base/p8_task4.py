@@ -15,32 +15,50 @@
 
 def write_lines(path: str, lines: list[str]) -> None:
     """Записать строки в файл, каждая с переводом строки."""
-    # TODO: реализовать
-    pass
+    with open(path, "w", encoding="utf-8") as file:
+        for line in lines:
+            file.write(line + "\n")
 
 
 def read_lines(path: str) -> list[str]:
     """Прочитать строки файла без символов перевода строки."""
-    # TODO: реализовать
-    pass
+    with open(path, "r", encoding="utf-8") as file:
+        lines = file.read().splitlines()
+
+    return lines
 
 
 def count_nonempty(path: str) -> int:
     """Число непустых строк в файле."""
-    # TODO: реализовать
-    pass
+    count = 0
+
+    with open(path, "r", encoding="utf-8") as file:
+        for line in file:
+            if line.strip():
+                count += 1
+
+    return count
 
 
 def append_line(path: str, line: str) -> None:
     """Дописать строку в конец файла."""
-    # TODO: реализовать
-    pass
+    with open(path, "a", encoding="utf-8") as file:
+        file.write(line + "\n")
 
 
 def first_word_counts(path: str) -> dict[str, int]:
     """{первое слово: количество строк} по непустым строкам."""
-    # TODO: реализовать
-    pass
+    result = {}
+
+    with open(path, "r", encoding="utf-8") as file:
+        for line in file:
+            words = line.split()
+
+            if words:
+                first_word = words[0]
+                result[first_word] = result.get(first_word, 0) + 1
+
+    return result
 
 
 # ============================================================

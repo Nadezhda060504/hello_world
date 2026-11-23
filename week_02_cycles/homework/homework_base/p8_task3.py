@@ -19,32 +19,58 @@
 
 def next_task(tasks: list[tuple[int, int, str]]) -> tuple[int, str]:
     """Самый важный id и описание."""
-    # TODO: реализовать
-    pass
+    if not tasks:
+        return (None, None)
+
+    best_task = min(tasks, key=lambda task: (task[1], task[0]))
+
+    return (best_task[0], best_task[2])
 
 
 def execution_order(tasks: list[tuple[int, int, str]]) -> list[int]:
     """Порядок выполнения: сортировка по (приоритет, id), собрать через while."""
-    # TODO: реализовать
-    pass
+    sorted_tasks = sorted(tasks, key=lambda task: (task[1], task[0]))
+
+    result = []
+    i = 0
+
+    while i < len(sorted_tasks):
+        result.append(sorted_tasks[i][0])
+        i += 1
+
+    return result
 
 
 def priority_counts(tasks: list[tuple[int, int, str]]) -> dict[int, int]:
     """Сколько задач на каждый приоритет."""
-    # TODO: реализовать
-    pass
+    result = {}
+
+    for task_id, priority, description in tasks:
+        result[priority] = result.get(priority, 0) + 1
+
+    return result
 
 
 def first_urgent(tasks: list[tuple[int, int, str]]) -> tuple[int | None, str | None]:
     """Первая задача со словом 'urgent' в описании."""
-    # TODO: реализовать
-    pass
+    for task_id, priority, description in tasks:
+        if "urgent" in description:
+            return (task_id, description)
+
+    return (None, None)
 
 
 def descriptions_upto(tasks: list[tuple[int, int, str]], threshold: int) -> list[str]:
     """Описания задач с приоритетом <= threshold в исходном порядке."""
-    # TODO: реализовать
-    pass
+    result = []
+
+    for i, task in enumerate(tasks):
+        task_id, priority, description = task
+
+        if priority <= threshold:
+            result.append(description)
+
+    return result
 
 
 # ============================================================

@@ -19,34 +19,68 @@
 
 
 def log_parse(lines: list[str]) -> list[tuple[str, str, str]]:
-    """Разобрать строки лога в список кортежей."""
-    # TODO: реализовать
-    pass
+    result = []
+
+    for line in lines:
+        parts = line.split()
+        timestamp = parts[0]
+        user = parts[1]
+        action = parts[2]
+        result.append((timestamp, user, action))
+
+    return result
 
 
 def log_users(lines: list[str]) -> set[str]:
-    """Множество пользователей из лога."""
-    # TODO: реализовать
-    pass
+    users = set()
 
+    for line in lines:
+        parts = line.split()
+        users.add(parts[1])
+
+    return users
 
 def log_counts(lines: list[str]) -> dict[str, int]:
-    """Сколько строк у каждого пользователя (while по индексам)."""
-    # TODO: реализовать
-    pass
+    counts = {}
+    i = 0
 
+    while i < len(lines):
+        parts = lines[i].split()
+        user = parts[1]
+
+        if user in counts:
+            counts[user] += 1
+        else:
+            counts[user] = 1
+
+        i += 1
+
+    return counts
 
 def log_first_seen(lines: list[str]) -> list[str]:
-    """Пользователи в порядке первого появления (enumerate + set)."""
-    # TODO: реализовать
-    pass
+    result = []
+    seen = set()
+
+    for i, line in enumerate(lines):
+        parts = line.split()
+        user = parts[1]
+
+        if user not in seen:
+            result.append(user)
+            seen.add(user)
+
+    return result
 
 
 def log_top_user(lines: list[str]) -> tuple[str, int]:
-    """Самый активный пользователь и число его строк."""
-    # TODO: реализовать
-    pass
+    counts = log_counts(lines)
 
+    if not counts:
+        return ("", 0)
+
+    top_user = max(counts, key=counts.get)
+
+    return (top_user, counts[top_user])
 
 # ============================================================
 # Assert-тесты

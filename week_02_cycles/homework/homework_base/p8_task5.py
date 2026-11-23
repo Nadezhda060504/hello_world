@@ -17,32 +17,74 @@
 
 def total_and_count(sessions: list[tuple[str, int, int]]) -> tuple[int, int]:
     """Общая длительность и число сессий."""
-    # TODO: реализовать
-    pass
+    total = 0
+    count = 0
+
+    for user, start, end in sessions:
+        total += end - start
+        count += 1
+
+    return (total, count)
 
 
 def duration_by_user(sessions: list[tuple[str, int, int]]) -> dict[str, int]:
     """Суммарная длительность по пользователям."""
-    # TODO: реализовать
-    pass
+    result = {}
+
+    for user, start, end in sessions:
+        duration = end - start
+        result[user] = result.get(user, 0) + duration
+
+    return result
 
 
 def short_session_users(sessions: list[tuple[str, int, int]], limit: int = 15) -> set[str]:
     """Пользователи с хотя бы одной сессией короче limit."""
-    # TODO: реализовать
-    pass
+    result = set()
+
+    for user, start, end in sessions:
+        duration = end - start
+
+        if duration < limit:
+            result.add(user)
+
+    return result
 
 
 def longest_session(sessions: list[tuple[str, int, int]]) -> tuple[str | None, int]:
     """Самая длинная сессия: (user, длительность)."""
-    # TODO: реализовать
-    pass
+    if not sessions:
+        return (None, 0)
+
+    best_user = None
+    best_duration = -1
+
+    for user, start, end in sessions:
+        duration = end - start
+
+        if duration > best_duration:
+            best_user = user
+            best_duration = duration
+
+        elif duration == best_duration and user < best_user:
+            best_user = user
+
+    return (best_user, best_duration)
 
 
 def sessions_valid(sessions: list[tuple[str, int, int]]) -> bool:
     """True, если у всех сессий start <= end."""
-    # TODO: реализовать
-    pass
+    i = 0
+
+    while i < len(sessions):
+        user, start, end = sessions[i]
+
+        if start > end:
+            return False
+
+        i += 1
+
+    return True
 
 
 # ============================================================

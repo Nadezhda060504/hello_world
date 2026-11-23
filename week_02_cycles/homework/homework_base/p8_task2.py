@@ -22,33 +22,69 @@
 
 def all_tags(supplies: dict[str, set[str]]) -> set[str]:
     """Объединение всех тегов."""
-    # TODO: реализовать
-    pass
+    result = set()
+
+    for tags in supplies.values():
+        result = result | tags
+
+    return result
 
 
 def common_tags(supplies: dict[str, set[str]]) -> set[str]:
     """Пересечение тегов всех поставок."""
-    # TODO: реализовать
-    pass
+    if not supplies:
+        return set()
+
+    result = set(next(iter(supplies.values())))
+
+    for tags in supplies.values():
+        result = result & tags
+
+    return result
 
 
 def most_common_tag(supplies: dict[str, set[str]]) -> tuple[str, int]:
     """Самый частый тег и число поставок с ним."""
-    # TODO: реализовать
-    pass
+    counts = {}
+
+    for tags in supplies.values():
+        for tag in tags:
+            counts[tag] = counts.get(tag, 0) + 1
+
+    if not counts:
+        return ("", 0)
+
+    best_tag = min(counts, key=lambda tag: (-counts[tag], tag))
+
+    return (best_tag, counts[best_tag])
 
 
 def supplies_with_fruit(supplies: dict[str, set[str]]) -> list[str]:
     """Поставки с тегом 'fruit' в порядке ключей."""
-    # TODO: реализовать
-    pass
+    result = []
+
+    for i, supply in enumerate(supplies):
+        if "fruit" in supplies[supply]:
+            result.append(supply)
+
+    return result
 
 
 def unique_tag_counts(supplies: dict[str, set[str]]) -> dict[str, int]:
     """Сколько уникальных (только у этой поставки) тегов у каждой поставки."""
-    # TODO: реализовать
-    pass
+    result = {}
 
+    for supply, tags in supplies.items():
+        other_tags = set()
+
+        for other_supply, other_set in supplies.items():
+            if other_supply != supply:
+                other_tags = other_tags | other_set
+
+        unique_tags = tags - other_tags
+        result[supply] = len(unique_tags)
+
+    return result
 
 # ============================================================
 # Assert-тесты
